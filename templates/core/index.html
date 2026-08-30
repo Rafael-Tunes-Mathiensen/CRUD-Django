@@ -9,7 +9,15 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
-        <h1>Bem-vindo à Página Inicial</h1>
-        <h2>Está página é renderizada apartir de um template</h2>
+        <div>
+            <form action="{% url 'tarefas' %}" method="POST">
+                {% csrf_token %}
+                <label for="usuario">Usuário</label>
+                <input type="text" id="usuario">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha">
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
     </body>
 </html>
