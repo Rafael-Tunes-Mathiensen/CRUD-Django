@@ -18,7 +18,6 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        {{ tarefas }}
                         <th scope="col">#</th>
                         <th scope="col">Titulo</th>
                         <th scope="col">Descrição</th>
@@ -36,13 +35,14 @@
                             <td>{{ tarefa.data }}</td>
                             <td>{% if tarefa.status %} Concluída {% else %} Pendente {% endif %}</td>
                             <td>
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Excluir</button>
+                                <a class="btn btn-primary">Editar</a>
+                                <a class="btn btn-danger" href="{% url 'deletar_tarefa' tarefa.id %}">Excluir</a>
                             </td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
+            <a href="{% url 'criar_tarefa' %}" class="btn btn-success">Criar Nova Tarefa</a>
         </div>
     </body>
 </html>
