@@ -18,7 +18,8 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
+                        {{ tarefas }}
+                        <th scope="col">#</th>
                         <th scope="col">Titulo</th>
                         <th scope="col">Descrição</th>
                         <th scope="col">Data de vencimento</th>
@@ -27,16 +28,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Django Models</td>
-                        <td>Aprendendo como o django lida com models e relaciona no db</td>
-                        <td>30/08/2026</td>
-                        <td>Pendente</td>
-                        <td>
-                            <button class="btn btn-primary">Editar</button>
-                            <button class="btn btn-danger">Excluir</button>
-                    </tr>
+                    {% for tarefa in tarefas %}
+                        <tr>
+                            <th scope="row">{{ tarefa.id }}</th>
+                            <td>{{ tarefa.titulo }}</td>
+                            <td>{{ tarefa.descricao }}</td>
+                            <td>{{ tarefa.data }}</td>
+                            <td>{% if tarefa.status %} Concluída {% else %} Pendente {% endif %}</td>
+                            <td>
+                                <button class="btn btn-primary">Editar</button>
+                                <button class="btn btn-danger">Excluir</button>
+                            </td>
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
