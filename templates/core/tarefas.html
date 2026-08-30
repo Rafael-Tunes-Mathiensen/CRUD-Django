@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,10 +7,38 @@
         <title>Tarefas</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="{% static 'core/style/tarefas_style.css' %}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     </head>
     <body>
-        <h1>Lista de Tarefas</h1>
-        <p>Aqui você pode gerenciar suas tarefas.</p>
+        <h1 class="text-center mt-5">Lista de Tarefas</h1>
+        <p class="text-center">Aqui você pode gerenciar suas tarefas.</p>
+
+        <div class="container">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Titulo</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Data de vencimento</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Django Models</td>
+                        <td>Aprendendo como o django lida com models e relaciona no db</td>
+                        <td>30/08/2026</td>
+                        <td>Pendente</td>
+                        <td>
+                            <button class="btn btn-primary">Editar</button>
+                            <button class="btn btn-danger">Excluir</button>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </body>
 </html>
