@@ -1,0 +1,8 @@
+Abrir o console no CMD para utilizar comandos do BD = python manage.py shell
+
+1- Importar o models onde está a tabela a ser alterada = from nomedoapp.models import NomeDaTabela
+2- NomeDaTabela.objects.create(campo1='exemplo de campo de texto', campo2='2026-08-30', campo3=True) para adicionar na tabela um dado
+3- NomeDaTabela.objects.get(chave_primaria=valor) para selecionar um dado especifico
+4- NomeVariavel = objects.get(chave_primaria=valor) para armazenar um dado especifico em uma variavel
+5- NomeVariavel.NomeDoCampo = 'Valor que sera alterado do campo'
+6- NomeVariavel.save() para realizar a alteração
