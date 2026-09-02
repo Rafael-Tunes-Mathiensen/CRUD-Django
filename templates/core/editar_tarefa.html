@@ -16,14 +16,17 @@
             <div class="mb-3">
                 <label for="titulo" class="form-label">Titulo</label>
                 <input type="text" class="form-control" id="titulo" name="titulo" value="{{ tarefa.titulo }}">
+                {{ form.titulo.errors }}
             </div>
             <div class="mb-3">
                 <label for="descricao" class="form-label">Descrição</label>
                 <input type="text" class="form-control" id="descricao" name="descricao" value="{{ tarefa.descricao }}">
+                {{ form.descricao.errors }}
             </div>
             <div class="mb-3">
                 <label for="data" class="form-label">Data de vencimento</label>
                 <input type="date" class="form-control" id="data" name="data" value="{{ tarefa.data|date:'Y-m-d' }}">
+                {{ form.data.errors }}
             </div>
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="status" name="status" value=on {% if tarefa.status %} checked {% endif %}>
