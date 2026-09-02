@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from core.forms import TarefaForm
 from core.models import Tarefa
 
 def index(request):
@@ -10,11 +11,9 @@ def lista_tarefas(request):
 
 def criar_tarefa(request):
     if request.method == 'POST':
-        titulo = request.POST.get('titulo')
-        descricao = request.POST.get('descricao')
-        data = request.POST.get('data')
-        status = request.POST.get('status') == 'on'
-        Tarefa.objects.create(titulo=titulo, descricao=descricao, data=data, status=status)
+        form = TarefaForm(request.POST)
+        if form.is_valid():
+            form.save()
         return redirect('tarefas')
     return render(request, 'core/criar_tarefa.html')
 
