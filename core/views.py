@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from core.forms import TarefaForm
 from core.models import Tarefa
@@ -22,7 +22,7 @@ def criar_tarefa(request):
 
 @login_required
 def editar_tarefa(request, id):
-    tarefa = Tarefa.objects.get(id=id)
+    tarefa = get_object_or_404(Tarefa, id=id, usuario=request.user)
     if request.method == 'POST':
         form = TarefaForm(request.POST, instance=tarefa)
         if form.is_valid():
@@ -33,7 +33,7 @@ def editar_tarefa(request, id):
 
 @login_required
 def deletar_tarefa(request, id):
-    tarefa = Tarefa.objects.get(id=id)
+    tarefa = get_object_or_404(Tarefa, id=id, usuario=request.user)
     if request.method == 'POST':
         tarefa.delete()
         return redirect('index')
