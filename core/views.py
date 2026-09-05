@@ -5,7 +5,7 @@ from core.models import Tarefa
 
 @login_required
 def index(request):
-    lista = Tarefa.objects.all()
+    lista = Tarefa.objects.filter(usuario=request.user)
     return render(request, 'core/tarefas.html', {'tarefas': lista})
 
 @login_required
@@ -13,6 +13,8 @@ def criar_tarefa(request):
     if request.method == 'POST':
         form = TarefaForm(request.POST)
         if form.is_valid():
+            tarefa = form.save(commit=False)
+            tarefa.usuario = request.user
             form.save()
             return redirect('index')
         return render(request, 'core/criar_tarefa.html', {'form': form})
