@@ -1,14 +1,17 @@
 from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
 from core.forms import TarefaForm
 from core.models import Tarefa
 
 def index(request):
-    return render(request, 'core/index.html')
+    return render(request, 'registration/login.html')
 
+@login_required
 def lista_tarefas(request):
     lista = Tarefa.objects.all()
     return render(request, 'core/tarefas.html', {'tarefas': lista})
 
+@login_required
 def criar_tarefa(request):
     if request.method == 'POST':
         form = TarefaForm(request.POST)
@@ -18,6 +21,7 @@ def criar_tarefa(request):
         return render(request, 'core/criar_tarefa.html', {'form': form})
     return render(request, 'core/criar_tarefa.html')
 
+@login_required
 def editar_tarefa(request, id):
     tarefa = Tarefa.objects.get(id=id)
     if request.method == 'POST':
@@ -28,6 +32,7 @@ def editar_tarefa(request, id):
         return render(request, 'core/editar_tarefa.html', {'form': form, 'tarefa': tarefa})
     return render(request, 'core/editar_tarefa.html', {'tarefa': tarefa})
 
+@login_required
 def deletar_tarefa(request, id):
     tarefa = Tarefa.objects.get(id=id)
     if request.method == 'POST':

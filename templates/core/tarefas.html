@@ -11,8 +11,12 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     </head>
     <body>
+        <form action="{% url 'logout' %}" method="POST" class="text-end mt-1">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Sair</button>
+        </form>
         <h1 class="text-center mt-5">Lista de Tarefas</h1>
-        <p class="text-center">Aqui você pode gerenciar suas tarefas.</p>
+        <p class="text-center">Estas são as suas tarefas, {{ request.user.username }}</p>
 
         <div class="container">
             <table class="table table-striped">
